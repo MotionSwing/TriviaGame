@@ -1,18 +1,18 @@
+@font-face {
+	font-family: "Forced Square";
+	src: url(../fonts/forced-square.ttf);
+}
+
 * {
 	box-sizing: border-box;
 }
 
 body {
-	/*background: url();*/
 	background-color: pink;
+	background: url(../images/bg-90s.jpg);
+	background-size: 80%;
 	font-weight: 800;
 }
-
-.results,
-.trivia {
-	display: none;
-}
-
 .container {
 	background-color: #ffff4e;
 	margin: 30px auto;
@@ -23,6 +23,7 @@ body {
 }
 
 h1 {
+	font-family: "Forced Square", consolas,sans-serif;
 	color: #3c0099;
 	font-size: 70px;
 	text-align: center;
@@ -61,7 +62,35 @@ h2 {
 	transform: translate(-50%, -50%);
 }
 
+#restart,
 #done {
-	display: none;
+/*	display: none;*/
 	margin: 30px auto;
+	padding: 5px;
+}
+
+/* Advanced Game */
+
+.btn-no-bg,
+.btn-option {
+	display: block;
+	margin: 0 auto;
+	width: 300px;
+	font-size: 30px;
+	background: 0;
+	border: 0;
+	cursor: pointer;
+}
+
+.btn-option:hover {
+	border: 2px solid #3c0099;	
+	background-color: pink;	
+}
+
+img {
+	width: 300px;
+}
+
+.hide {
+	display: none;
 }
