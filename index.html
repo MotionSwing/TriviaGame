@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia Game</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="assets/javascript/app.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<h1>Totally Trivial Trivia!</h1>
+
+		<div class="trivia">
+			<p>Time Remaining: <span class="countdown">30 Seconds</span></p>
+
+			<div id="trivia1" class="question">
+				<p>What was the first full length CGI movie?</p>
+				<form>
+					<input type="radio" id="q1_option1" value="false" name="question1">
+					<label for="q1_option1">A Bug's Life</label>
+					<input type="radio" id="q1_option2" value="false" name="question1">
+					<label for="q1_option2">Monster's Inc.</label>
+					<input type="radio" id="q1_option3" value="true" name="question1">
+					<label for="q1_option3">Toy Story</label>
+					<input type="radio" id="q1_option4" value="false" name="question1">
+					<label for="q1_option4">The Lion King</label>
+				</form>
+			</div>
+
+			<div id="trivia2" class="question">
+				<p>Which of these is NOT a name of one of the Spice Girls?</p>
+				<form>
+					<input type="radio" id="q2_option1" value="false" name="question2">
+					<label for="q2_option1">Sporty Spice</label>
+					<input type="radio" id="q2_option2" value="true" name="question2">
+					<label for="q2_option2">Fred Spice</label>
+					<input type="radio" id="q2_option3" value="false" name="question2">
+					<label for="q2_option3">Scary Spice</label>
+					<input type="radio" id="q2_option4" value="false" name="question2">
+					<label for="q2_option4">Posh Spice</label>
+				</form>
+			</div>
+
+			<div id="trivia3" class="question">
+				<p>Which NBA team won the most titles in the 90s?</p>
+				<form>
+					<input type="radio" id="q3_option1" value="false" name="question3">
+					<label for="q3_option1">New York Knicks</label>
+					<input type="radio" id="q3_option2" value="false" name="question3">
+					<label for="q3_option2">Portland Trailblazers</label>
+					<input type="radio" id="q3_option3" value="false" name="question3">
+					<label for="q3_option3">Los Angeles Lakers</label>
+					<input type="radio" id="q3_option4" value="true" name="question3">
+					<label for="q3_option4">Chicago Bulls</label>
+				</form>
+			</div>
+
+			<div id="trivia4" class="question">
+				<p>Which group released the hit song, "Smells Like Teen Spirit"?</p>
+				<form>
+					<input type="radio" id="q4_option1" value="true" name="question4">
+					<label for="q4_option1">Nirvana</label>
+					<input type="radio" id="q4_option2" value="false" name="question4">
+					<label for="q4_option2">Backstreet Boys</label>
+					<input type="radio" id="q4_option3" value="false" name="question4">
+					<label for="q4_option3">The Offspring</label>
+					<input type="radio" id="q4_option4" value="false" name="question4">
+					<label for="q4_option4">No Doubt</label>
+				</form>
+			</div>
+
+			<div id="trivia5" class="question">
+				<p>Which popular Disney movie featured the song, "Circle of Life"?</p>
+				<form>
+					<input type="radio" id="q5_option1" value="false" name="question5">
+					<label for="q5_option1">Beauty and the Beast</label>
+					<input type="radio" id="q5_option2" value="false" name="question5">
+					<label for="q5_option2">Moana</label>
+					<input type="radio" id="q5_option3" value="false" name="question5">
+					<label for="q5_option3">Aladdin</label>
+					<input type="radio" id="q5_option4" value="true" name="question5">
+					<label for="q5_option4">The Lion King</label>
+				</form>
+			</div>
+		</div>
+		<div class="results">
+			<h2>All Done!</h2>
+			<p>Correct Answers: <span class="correct">0</span></p>
+			<p>Incorrect Answers: <span class="incorrect">0</span></p>
+			<p>Unanswered: <span class="unanswered">0</span></p>
+		</div>
+		<div class="buttons">
+			<button id="start" class="btn">Start</button>
+			<button id="done" class="btn">Done</button>	
+		</div>
+	</div>
+
+</body>
+</html>
