@@ -12,14 +12,21 @@ body {
 	background: url(../images/bg-90s.jpg);
 	background-size: 80%;
 	font-weight: 800;
+	overflow: hidden;
 }
+
+/*----------------------*/
+/*--- General Styles ---*/
+/*----------------------*/
 .container {
+	position: relative;
 	background-color: #ffff4e;
 	margin: 30px auto;
 	width: 70%;
-	height: 80vh;
 	padding: 50px 20px;
 	text-align: center;
+	min-height: 500px;
+	box-shadow: 0 0 15px 3px rgba(0,0,0,0.9);
 }
 
 h1 {
@@ -30,13 +37,17 @@ h1 {
 }
 
 h2 {
-	margin-top: 30px;
+	margin: 30px;
 	font-size: 30px;
 }
 
 .trivia p {
 	margin: 20px 0 0;
 	font-size: 20px;
+}
+
+.trivia p:last-of-type {
+	/*margin-bottom: 20px;*/
 }
 
 .results p {
@@ -55,6 +66,15 @@ h2 {
 	cursor: pointer;	
 }
 
+.answer-img {
+	max-height: 160px;
+	overflow: visible;
+}
+
+.answer-img img {
+	border: 3px solid #000;
+}
+
 #start {
 	position: absolute;
 	bottom: 40%;
@@ -64,18 +84,19 @@ h2 {
 
 #restart,
 #done {
-/*	display: none;*/
 	margin: 30px auto;
 	padding: 5px;
 }
 
-/* Advanced Game */
+/*---------------------*/
+/*--- Advanced Game ---*/
+/*---------------------*/
 
 .btn-no-bg,
 .btn-option {
 	display: block;
 	margin: 0 auto;
-	width: 300px;
+	min-width: 300px;
 	font-size: 30px;
 	background: 0;
 	border: 0;
@@ -93,4 +114,179 @@ img {
 
 .hide {
 	display: none;
+}
+
+.correct-answer {
+	color: red;
+}
+
+/*---------------*/
+/*--- The 90s ---*/
+/*---------------*/
+
+.the90s {background: url(../images/bg-90s.jpg);}
+.the90s .container {background-color: rgba(255, 255, 78, 1);}
+
+/*-------------------*/
+/*--- Video Games ---*/
+/*-------------------*/
+
+.video-games {
+	background: url(../images/video-game-backgrounds.png);
+	background-size: cover;
+	color: #fff;
+}
+.video-games .container {
+	background-color: rgba(0, 51, 204, .6);
+	box-shadow: 0 0 15px 3px rgba(255,255,255,0.9);
+}
+
+.video-games h1 {
+	color: #000;
+}
+
+.video-games .btn,
+.video-games .btn-option:hover {
+	background-color: #000;
+	border: 0;
+	color: #fff;
+}
+
+.video-games .btn-option,
+.movies .btn-option,
+.music .btn-option {
+	width: initial;
+}
+
+/*--------------*/
+/*--- Movies ---*/
+/*--------------*/
+.movies {
+	background-image: url(../images/captain-america-vs-black-panther.jpg);
+	background-size: cover;
+}
+.movies .container {background-color: rgba(255, 255, 204, .3);}
+
+/*-------------*/
+/*--- Music ---*/
+/*-------------*/
+.music {
+	background-image: url(../images/music-2.jpg);
+	background-size: cover;
+}
+.music .container {background-color: rgba(255, 255, 204, .3);}
+
+/* Celebrations */
+.star {
+	position: absolute;
+	top: 10px;
+	left: 50%;
+	width: 75px;
+	height: 75px;
+	background-color: blue;
+	-webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	animation: star_flash 1s forwards;
+	opacity: 0;
+}
+
+@keyframes star_flash {
+	0% {opacity: 0;	transform: scale(0);}
+	35% {opacity: 1;transform: scale(1.2);}
+	100% {opacity: 1;transform: scale(0);}
+}
+
+.star-1 {background-color: blue;}
+.star-2 {background-color: orange;}
+.star-3 {background-color: red;}
+
+.star.sm {width: 50px;height: 50px;}
+.star.md {width: 75px;height: 75px;}
+.star.lg {width: 100px;height: 100px;}
+
+/* Theme Buttons */
+.themes {
+	position: fixed;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-between;
+	top: 50%;
+	right: 10px;
+	transform: translate(-10%, -50%);
+	width: 100px;
+	height: 90vh;
+	border-radius: 5px;
+}
+
+.theme {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	border-radius: 5px;
+	background-color: #bbb;
+	cursor: pointer;
+	border: 2px solid #000;
+	box-shadow: 0 0 10px rgba(0,0,0,0.6), inset 0 0 10px rgba(0,0,0,0.6);
+	background-image: linear-gradient(#000, #fff),
+	    linear-gradient(to right, #000 0%, transparent 30%, transparent 70%, #000 100%);
+	background-size: 100% 100%;
+	filter: grayscale(100%);
+	z-index: 1;
+}
+
+.theme:hover{
+	filter: grayscale(0%);
+	border: 2px solid #009cff;
+}
+
+.theme-1 {background-image: url(https://media3.giphy.com/media/qTO3G17bstuo0/100_s.gif);}
+.theme-1:hover {background-image: url(https://media3.giphy.com/media/qTO3G17bstuo0/100.gif);}
+
+.theme-2 {background-image: url(https://media3.giphy.com/media/d2Z7NqwF3yImFNHW/100_s.gif);}
+.theme-2:hover {background-image: url(https://media3.giphy.com/media/d2Z7NqwF3yImFNHW/100.gif);}
+
+.theme-3 {background-image: url(https://media3.giphy.com/media/pUeXcg80cO8I8/100_s.gif);}
+.theme-3:hover {background-image: url(https://media3.giphy.com/media/pUeXcg80cO8I8/100.gif);}
+
+.theme-4 {background-image: url(https://media3.giphy.com/media/XQ1FwjRKun4nS/100_s.gif);}
+.theme-4:hover {background-image: url(https://media3.giphy.com/media/XQ1FwjRKun4nS/100.gif);}
+
+.theme-1:hover::after,
+.theme-2:hover::after,
+.theme-3:hover::after,
+.theme-4:hover::after {
+	content: attr(data-theme);
+	position: absolute;
+	top: -1em;
+	left: -2px;
+	width: 100%;
+	font-size: 1em;
+	background-color: #009cff;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border: 2px solid #009cff;
+	color: #000;
+	animation: reveal 500ms forwards;
+	z-index: -1;
+}
+
+.the90s .theme-1,
+.video-games .theme-2,
+.movies .theme-3,
+.music .theme-4 {
+	border: 2px solid #009cff;
+	filter: grayscale(0%);
+}
+
+@keyframes reveal {
+	0% {top: 1em; opacity: 0;}
+	100% {top: -1em; opacity: 1;}
+}
+@keyframes jiggle {
+	0% { }
+	20% { transform: rotate(-30deg); }
+	40% { transform: rotate(30deg); }
+	60% { transform: rotate(-10deg); }
+	80% { transform: rotate(10deg); }
+	100% {}
 }
