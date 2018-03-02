@@ -117,7 +117,9 @@ img {
 }
 
 .correct-answer {
-	color: red;
+	color: #f00;
+	text-shadow: 0 0 2px #000, 0 0 2px #000;
+	font-weight: 800;
 }
 
 /*---------------*/
@@ -282,11 +284,4 @@ img {
 	0% {top: 1em; opacity: 0;}
 	100% {top: -1em; opacity: 1;}
 }
-@keyframes jiggle {
-	0% { }
-	20% { transform: rotate(-30deg); }
-	40% { transform: rotate(30deg); }
-	60% { transform: rotate(-10deg); }
-	80% { transform: rotate(10deg); }
-	100% {}
-}
+

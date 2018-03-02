@@ -17,6 +17,7 @@ $(document).ready(function(){
 		game.loadTheme($(this).data('theme'));
 	});
 
+	// Game Clock Object
 	const gameClock = {
 		allowedTime: 30,
 		intervalId: 0,
@@ -63,6 +64,7 @@ $(document).ready(function(){
 		}
 	};
 
+	// Game Object
 	const game = {
 		gameType: "Advanced",
 		answeredCorrectly: 0,
@@ -81,7 +83,7 @@ $(document).ready(function(){
 
 			// Load the selected game type
 			if(game.gameType === "Basic"){
-				game.initialize_basic();
+				game.initialize_basic(); //TODO: use it or lose it
 			}else{
 				game.initialize_advanced();
 			}
@@ -177,11 +179,14 @@ $(document).ready(function(){
 				answerImg = $("<img>").attr('src', themes[game.selectedTheme].questions[index].image);
 			}else {
 				const answer = $("<p>").html("<p>The Correct Answer was: <span class='correct-answer'>"+ game.getAnswer(index) +"</span></p>");
-				$(".trivia").append(status_text, answer);	
-				answerImg = $("<img>").attr('src', themes[game.selectedTheme].questions[index].image);
+				$(".trivia").append(status_text, answer);
+				if($('body').hasClass('movies')) {
+					answerImg = $("<img>").attr('src', shia.sad[Math.floor(Math.random() * shia.sad.length)]);
+				}else {
+					answerImg = $("<img>").attr('src', themes[game.selectedTheme].questions[index].image);
+				}
 			}
 			$('.trivia').append($("<div>").addClass('answer-img'));
-			// answerImg = $("<img>").attr('src', themes[game.selectedTheme].questions[index].image);
 			$(".answer-img").append(answerImg);
 		},
 		getAnswer: function(index){
@@ -192,7 +197,18 @@ $(document).ready(function(){
 			}
 			return "No Answer";
 		},
-		celebration: function(count) {
+		celebration: function(theme,count) {
+			// Review https://www.w3schools.com/charsets/ref_utf_symbols.asp
+
+			// For Music theme:
+			// &#9833 - 9837; 
+			// &#9834;
+			// &#9835;
+			// &#9836;
+			// &#9837;
+			// &#9839;
+
+
 			for (var i = 0; i < count; i++) {
 				const size = ["sm","md","lg"];
 				const star = $("<div>").addClass('star ' + size[Math.floor(Math.random() * size.length)]);

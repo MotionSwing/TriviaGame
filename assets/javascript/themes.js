@@ -346,17 +346,26 @@ const themes = [
 		}
 	];
 
-	const shia = [
-		"assets/images/shia-1.gif",
-		"assets/images/shia-2.gif",
-		"assets/images/shia-3.gif",
-		"assets/images/shia-4.gif",
-		"assets/images/shia-5.gif",
-		"assets/images/shia-6.gif",
-		"assets/images/shia-7.gif",
-		"assets/images/shia-8.gif",
-		"assets/images/shia-watching-movies-blink-1.gif",
-		"assets/images/shia-watching-movies-chewing-1.gif",
-		"assets/images/shia-watching-movies-drinking-1.gif",
-		"assets/images/shia-8.gif",
-	];
+	const shia = {
+		"happy":[
+			"assets/images/shia-1.gif",
+			"assets/images/shia-6.gif"
+		],
+		"sad": [
+			"assets/images/shia-2.gif",
+			"assets/images/shia-3.gif",
+			"assets/images/shia-4.gif",
+			"assets/images/shia-5.gif",
+			"assets/images/shia-7.gif",
+			"assets/images/shia-8.gif",
+			"assets/images/shia-watching-movies-blink-1.gif",
+			"assets/images/shia-watching-movies-chewing-1.gif",
+			"assets/images/shia-watching-movies-drinking-1.gif",
+			"assets/images/shia-watching-movies-eye-rub-1.gif",
+			"assets/images/shia-watching-movies-head-down-1.gif",
+			"assets/images/shia-watching-movies-itch-1.gif",
+			"assets/images/shia-watching-movies-sitting-1.gif",
+			"assets/images/shia-watching-movies-sleepy-smiling-1.gif",
+			"assets/images/shia-watching-movies-smiling-1.gif"
+		]
+	};
