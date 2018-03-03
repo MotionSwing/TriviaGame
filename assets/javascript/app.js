@@ -1,20 +1,29 @@
 $(document).ready(function(){
 
-	// 
-	$(".results, .trivia, #restart, #done").addClass('hide');
+	$(".results, .trivia, #restart").addClass('hide');
 
-	$(".container").on('click', '#start', function(event) {
-		this.remove();
-		game.start_game();
-		// $(".container").css('height', 'initial');
-	}).on('click', '#done', function(event) {
-		game.stopGame(); // TODO: use it or lose it
-	}).on('click', '#restart', function(event) {
-		// game.resetGame();
+	$("body").on('click', '#start', function(event) {
+		game.hasStarted = true;
+		$(this).remove();
+	}).on('click', '#start, #restart', function(event) {
 		game.start_game();
 	}).on('click', '.theme', function(event) {
-		console.log($(this).data('theme'));
-		game.loadTheme($(this).data('theme'));
+		$('.theme').removeClass('active');
+		$(this).addClass('active');
+		for (var i = 0; i < themes.length; i++) {
+			if(themes[i].name === $(this).data('theme')){
+				game.selectedTheme = i;
+				$("body").removeClass().addClass(themes[i].class);
+				if(game.hasStarted){
+					clearTimeout(game.timeout_Celebration);
+					clearTimeout(game.timeout_EndRound);
+					$('.flourish').remove();
+					gameClock.stop();
+					game.start_game();
+				}
+				return;
+			}
+		}
 	});
 
 	// Game Clock Object
@@ -36,101 +45,54 @@ $(document).ready(function(){
 			gameClock.intervalId = 0;
 			isRunning = false;
 		},
-		reset: function(){
-			setTimeout(function(){
-				if(!game.isLastQuestion) {
-					gameClock.remainingSeconds = gameClock.allowedTime;
-					game.displayQuestion(game.nextQuestion);
-				}else {
-					game.displayStats();
-				}
-			},4000);	
-		},
 		countdown: function() {
+			// Decrement the remaining seconds
 			gameClock.remainingSeconds--;
+
+			// Display the updated remaining seconds
 			$(".countdown").text(gameClock.remainingSeconds + " Seconds");
-			if(gameClock.remainingSeconds === 0 && game.gameType === "Basic") {
-				game.stopGame(); // TODO: use it or lose it
-			}else if(gameClock.remainingSeconds === 0 && game.gameType === "Advanced"){
-				gameClock.stop();
+
+			// If still no guess after time's up, finish the round
+			if(gameClock.remainingSeconds === 0){
 				game.unanswered++;
-				game.displayAnswer(game.nextQuestion - 1, "Out of Time!");
-				if(!game.isLastQuestion){
-					gameClock.reset();	
-				}else {
-					game.displayStats();
-				}
+				game.finishRound("Out of Time!");
 			}
 		}
 	};
 
 	// Game Object
 	const game = {
-		gameType: "Advanced",
-		answeredCorrectly: 0,
-		answeredIncorrectly: 0,
-		unanswered: 0,
-		nextQuestion: 0,
-		isLastQuestion: false,
+		hasStarted: false,
 		selectedTheme: 0,
+		correctGuesses: 0,
+		incorrectGuesses: 0,
+		unanswered: 0,
+		isLastQuestion: false,
+		usedQuestions: [],
+		availQuestions: [],
+		questionIndex: 0,
+		timeout_Celebration: 0,
+		timeout_EndRound: 0,
 		start_game: function() {
-			game.answeredCorrectly = 0;
-			game.answeredIncorrectly = 0;
+			// initialize variables
+			game.correctGuesses = 0;
+			game.incorrectGuesses = 0;
 			game.unanswered = 0;
-			game.nextQuestion = 0;
 			game.isLastQuestion = false;
+			game.usedQuestions = [];
+			game.availQuestions = [0,1,2,3,4,5,6,7];
+			game.questionIndex = game.getNextQuestionIndex();
 			$(".results, .trivia, #restart, #done").addClass('hide');
 
-			// Load the selected game type
-			if(game.gameType === "Basic"){
-				game.initialize_basic(); //TODO: use it or lose it
-			}else{
-				game.initialize_advanced();
-			}
-		},
-		choose_theme: function(themeNum) {
-			if(themeNum != null){
-				game.selectedTheme = themeNum;
-			}else {
-				game.selectedTheme = Math.floor(Math.random() * themes.length); 
-			}
-			$("body").removeClass().addClass(themes[game.selectedTheme].class);
-		},
-		initialize_basic: function() {
-			$(".question").remove();
-			for (var i = 0; i < themes[game.selectedTheme].questions.length; i++) {
-				const question_text = $("<p>").text(themes[game.selectedTheme].questions[i].text);
-				const question_form = $("<form>");
-				for (var j = 0; j < themes[game.selectedTheme].questions[i].responses.length; j++) {
-					const option = $("<input>");
-					option.attr({
-						type: 'radio',
-						id: 'q' + (i+1) + '_option' + (j + 1),
-						value: themes[game.selectedTheme].questions[i].responses[j].answer,
-						name: 'question' + (i+1)
-					});
-					const label = $("<label>").attr('for', 'q' + (i+1) + '_option' + (j + 1));
-					label.text(themes[game.selectedTheme].questions[i].responses[j].option); 
-					question_form.append(option, label);
-				}
-				const question = $("<div>").attr('id', 'trivia' + (i + 1)).addClass('question');
+			// Display a question
+			game.displayQuestion(game.questionIndex);
 
-				question.append(question_text, question_form);
-				$(".trivia").append(question);
-				$(".trivia, #done").removeClass('hide');
-			}
+			//Start the countdown
 			gameClock.start();
 		},
-		initialize_advanced: function() {
-			// Reset the 'next' question
-			game.nextQuestion = 0;
-			$(".results, #restart").addClass('hide');
-
-			// Display the next question
-			game.displayQuestion(game.nextQuestion);
-		},
+		// Displays a question and its set of choices
 		displayQuestion: function(index){
-			// Clear and rebuild the trivia section with the current question
+			// Build and display questions
 			$(".trivia").empty();
 			$(".trivia").html('<p>Time Remaining: <span class="countdown">30 Seconds</span></p>');
 			$(".trivia").append($("<p>").text(themes[game.selectedTheme].questions[index].text));
@@ -141,35 +103,59 @@ $(document).ready(function(){
 			}
 			$(".trivia").removeClass('hide');
 
-			// Setup Event Listeners on newly created option buttons
+			// Setup Event Listeners on newly created buttons
 			$(".btn-option").on('click', function(event) {
-				if($(this).data('value') === true){
-					// Player selects the correct answer
-					game.answeredCorrectly++;
-					game.celebration(10);
-					gameClock.stop();
-					game.displayAnswer(index,"Correct!");
-					gameClock.reset();
-				}else {
-					// Player selects the wrong answer
-					game.answeredIncorrectly++;
-					gameClock.stop();
-					game.displayAnswer(index,"Nope!");
-					gameClock.reset();
+				if($(this).data('value') === true){// Player selects the correct answer
+					// Increment the correct guesses
+					game.correctGuesses++;
+
+					// Display celebration
+					game.celebration(themes[game.selectedTheme].name,10);
+					game.finishRound("Correct!");
+				}else {// Player selects the wrong answer
+					// increment the incorrect guesses
+					game.incorrectGuesses++;
+					game.finishRound("Nope!");
 				}
 			});
+		},
+		finishRound: function(message) {
+			// Stop game clock
+			gameClock.stop();
 
-			// set the index of the next question
-			game.nextQuestion++;
+			// Display correct answer & image
+			game.displayAnswer(game.questionIndex,message);
 
-			// Check if the next question is the last question
-			if (game.nextQuestion === themes[game.selectedTheme].questions.length){
+			// Check if there are no more available questions
+			if (game.availQuestions.length === 0){
 				game.isLastQuestion = true;
 			}
 
-			// Start the countdown
-			gameClock.start();
+			// Display next question after timeout (4 seconds)
+			game.timeout_EndRound = setTimeout(function(){
+				if(!game.isLastQuestion) {
+					// Get index of next question
+					game.questionIndex = game.getNextQuestionIndex();
+
+					// Display the next question
+					game.displayQuestion(game.questionIndex);
+					
+					// restart the game clock
+					gameClock.start();
+				}else {
+					game.displayStats();
+				}
+			},4000);
 		},
+		// Gets the index of the next available question
+		getNextQuestionIndex: function(){
+			const chosenQ = game.availQuestions[Math.floor(Math.random() * game.availQuestions.length)];
+			game.usedQuestions.push(chosenQ);
+			game.availQuestions.splice(game.availQuestions.indexOf(chosenQ),1);
+			return chosenQ;
+		},
+		// index = selected question to display the answer to
+		// message = success/failure message to display to the player
 		displayAnswer: function(index, message){
 			$(".trivia :gt(1)").remove();
 			const status_text = $("<h2>").text(message);
@@ -178,7 +164,7 @@ $(document).ready(function(){
 				$(".trivia").append(status_text);
 				answerImg = $("<img>").attr('src', themes[game.selectedTheme].questions[index].image);
 			}else {
-				const answer = $("<p>").html("<p>The Correct Answer was: <span class='correct-answer'>"+ game.getAnswer(index) +"</span></p>");
+				const answer = $("<p>").html("<p>The Correct Answer was: <span class='correct-answer'>"+ game.getAnswerText(index) +"</span></p>");
 				$(".trivia").append(status_text, answer);
 				if($('body').hasClass('movies')) {
 					answerImg = $("<img>").attr('src', shia.sad[Math.floor(Math.random() * shia.sad.length)]);
@@ -189,7 +175,8 @@ $(document).ready(function(){
 			$('.trivia').append($("<div>").addClass('answer-img'));
 			$(".answer-img").append(answerImg);
 		},
-		getAnswer: function(index){
+		// Returns the text of the correct answer
+		getAnswerText: function(index){
 			for (var i = 0; i < themes[game.selectedTheme].questions[index].responses.length; i++) {
 				if(themes[game.selectedTheme].questions[index].responses[i].answer === true){
 					return themes[game.selectedTheme].questions[index].responses[i].option;
@@ -197,85 +184,63 @@ $(document).ready(function(){
 			}
 			return "No Answer";
 		},
+		// theme = name of the selected theme
+		// count = number of flourishes to display
 		celebration: function(theme,count) {
-			// Review https://www.w3schools.com/charsets/ref_utf_symbols.asp
-
-			// For Music theme:
-			// &#9833 - 9837; 
-			// &#9834;
-			// &#9835;
-			// &#9836;
-			// &#9837;
-			// &#9839;
-
-
 			for (var i = 0; i < count; i++) {
 				const size = ["sm","md","lg"];
-				const star = $("<div>").addClass('star ' + size[Math.floor(Math.random() * size.length)]);
-				star.css({
+				let flourish;
+				switch (theme) {
+					case "The90s":
+						flourish = $("<div>").addClass('flourish star ' + size[Math.floor(Math.random() * size.length)]);
+						flourish.css('background-color',
+							'rgb('+ Math.floor(Math.random() * 255) +','+ 
+							Math.floor(Math.random() * 255) +','+ 
+							Math.floor(Math.random() * 255) +')'
+							);
+						break;
+					case "Movies":
+						flourish = $("<div>").addClass('flourish popcorn popcorn-1 ' + size[Math.floor(Math.random() * size.length)]);
+						break;
+					case "Music":
+						const musicalNotes = ["&#9833;","&#9834;","&#9835;","&#9836;","&#9837;","&#9839;"];
+						flourish = $("<div>")
+							.addClass('flourish musical-note ' + size[Math.floor(Math.random() * size.length)])
+							.html(musicalNotes[Math.floor(Math.random() * musicalNotes.length)]);
+						flourish.css('color', 
+							'rgb('+ Math.floor(Math.random() * 255) +','+ 
+							Math.floor(Math.random() * 255) +','+ 
+							Math.floor(Math.random() * 255) +')'
+							);
+						break;
+					default:
+						flourish = $("<div>").addClass('flourish star ' + size[Math.floor(Math.random() * size.length)]);
+						flourish.css('background-color',
+							'rgb('+ Math.floor(Math.random() * 255) +','+ 
+							Math.floor(Math.random() * 255) +','+ 
+							Math.floor(Math.random() * 255) +')'
+							);
+						break;
+				}
+				flourish.css({
 					'top': Math.floor(Math.random() * 100) + '%',
 					'left': Math.floor(Math.random() * 100) + '%',
 					'animation-delay': Math.floor(Math.random() * 30) * 100 + 'ms',
-					'background-color': 
-						'rgb('+ Math.floor(Math.random() * 255) +','+ 
-						Math.floor(Math.random() * 255) +','+ 
-						Math.floor(Math.random() * 255) +')'
 				});
-				$(".container").append(star);
+				$(".container").append(flourish);
 			}
-			setTimeout(function(){
-				$('.star').remove();
+			game.timeout_Celebration = setTimeout(function(){
+				$('.flourish').remove();
 			}, 4000);
 		},
+		// Displays correct/incorrect/unanswered questions
 		displayStats: function() {
 			$(".trivia :gt(1)").remove();
 			$(".results, #restart").removeClass('hide');
 			$(".results h2").text("All done, here's how you did!");
-			$(".correct").text(game.answeredCorrectly);
-			$(".incorrect").text(game.answeredIncorrectly);
+			$(".correct").text(game.correctGuesses);
+			$(".incorrect").text(game.incorrectGuesses);
 			$(".unanswered").text(game.unanswered);
-		},
-		updateStats: function(game_type) {
-			// TODO: This code block only runs when game type is basic
-			// Make this code obsolete & delete...use it or lose it
-			if(game.game_type === "Basic"){
-				for (var i = 0; i < themes[game.selectedTheme].questions.length; i++) {
-					if($("input[name=question"+ (i + 1) +"]:checked").val() === "true"){
-						game.answeredCorrectly++;
-					}else if($("input[name=question"+ (i + 1) +"]:checked").val() === "false") {
-						game.answeredIncorrectly++;
-					}else {
-						game.unanswered++;
-					}
-				}				
-			}
-			$(".correct").text(game.answeredCorrectly);
-			$(".incorrect").text(game.answeredIncorrectly);
-			$(".unanswered").text(game.unanswered);
-		},
-		stopGame: function() {
-			// TODO: use it or lose it
-			$(".trivia, #done").addClass('hide');
-			$(".results").removeClass('hide');
-			// TODO: build a way to switch between updating basic or advanced stats
-			game.updateStats("Basic");
-			gameClock.stop();
-		},
-		resetGame: function() {
-			game.answeredCorrectly = 0;
-			game.answeredIncorrectly = 0;
-			game.unanswered = 0;
-			game.nextQuestion = 0;
-			game.isLastQuestion = false;
-			$(".results, .trivia, #restart, #done").addClass('hide');
-		},
-		loadTheme: function(themeName){
-			for (var i = 0; i < themes.length; i++) {
-				if(themes[i].name === themeName){
-					game.choose_theme(i);
-					return;
-				}
-			}
 		}
 	}
 });

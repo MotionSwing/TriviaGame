@@ -15,6 +15,25 @@ body {
 	overflow: hidden;
 }
 
+footer {
+	position: fixed;
+	left: 10px;
+	bottom: 10px;
+	background-color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #000;
+}
+footer:hover {
+	transform: scale(1.1);
+	box-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+footer a {
+	text-decoration: none;
+	color: #000;
+}
+
 /*----------------------*/
 /*--- General Styles ---*/
 /*----------------------*/
@@ -27,6 +46,7 @@ body {
 	text-align: center;
 	min-height: 500px;
 	box-shadow: 0 0 15px 3px rgba(0,0,0,0.9);
+	border-radius: 10px;
 }
 
 h1 {
@@ -67,19 +87,22 @@ h2 {
 }
 
 .answer-img {
-	max-height: 160px;
-	overflow: visible;
+	/*height: 160px;*/
+	/*overflow: visible;*/
 }
 
 .answer-img img {
 	border: 3px solid #000;
+	height: 160px;
 }
 
+/* Start button */
 #start {
 	position: absolute;
 	bottom: 40%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	border-radius: 10px / 50%;
 }
 
 #restart,
@@ -101,11 +124,13 @@ h2 {
 	background: 0;
 	border: 0;
 	cursor: pointer;
+	outline: 0;
 }
 
 .btn-option:hover {
 	border: 2px solid #3c0099;	
 	background-color: pink;	
+	border-radius: 10px / 50%;
 }
 
 img {
@@ -126,7 +151,7 @@ img {
 /*--- The 90s ---*/
 /*---------------*/
 
-.the90s {background: url(../images/bg-90s.jpg);}
+.the90s {background: url(../images/bg-90s.jpg); background-size: 80%;}
 .the90s .container {background-color: rgba(255, 255, 78, 1);}
 
 /*-------------------*/
@@ -178,7 +203,19 @@ img {
 }
 .music .container {background-color: rgba(255, 255, 204, .3);}
 
+.music .btn,
+.music .btn-option:hover {
+	background-color: rgba(0,0,255,0.6);
+}
+
 /* Celebrations */
+@keyframes symbol_flash {
+	0% {opacity: 0;	transform: scale(0);}
+	35% {opacity: 1;transform: scale(1.2);}
+	100% {opacity: 1;transform: scale(0);}
+}
+
+/*The 90s Celebration Symbol*/
 .star {
 	position: absolute;
 	top: 10px;
@@ -188,14 +225,8 @@ img {
 	background-color: blue;
 	-webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-	animation: star_flash 1s forwards;
+	animation: symbol_flash 1s forwards;
 	opacity: 0;
-}
-
-@keyframes star_flash {
-	0% {opacity: 0;	transform: scale(0);}
-	35% {opacity: 1;transform: scale(1.2);}
-	100% {opacity: 1;transform: scale(0);}
 }
 
 .star-1 {background-color: blue;}
@@ -205,6 +236,73 @@ img {
 .star.sm {width: 50px;height: 50px;}
 .star.md {width: 75px;height: 75px;}
 .star.lg {width: 100px;height: 100px;}
+
+/*Music Celebration Symbol*/
+.musical-note {
+	position: absolute;
+	font-size: 2em;
+	animation: symbol_flash 1s forwards;
+	opacity: 0;
+}
+.musical-note.sm {font-size: 2em;}
+.musical-note.md {font-size: 5em;}
+.musical-note.lg {font-size: 8em;}
+
+.popcorn {
+	position: absolute;
+	animation: symbol_flash 1s forwards;
+	opacity: 0;
+}
+.popcorn.sm {width: 75px;height: 75px;}
+.popcorn.md {width: 100px;height: 100px;}
+.popcorn.lg {width: 125px;height: 125px;}
+
+
+.popcorn-1 {
+	position: absolute;
+	top: 15%;
+	left: 1%;
+	/*transform: translate(-50%, -50%);*/
+	width: 100px;
+	height: 100px;
+    background-repeat: no-repeat;
+	background-image: 
+	radial-gradient(ellipse at 50% 44%, #ff9 50%, transparent 50%), /*main top */ 
+    radial-gradient(ellipse at 50% 42%, #ccb100 50%, transparent 50%), /*Main shadow*/
+    radial-gradient(ellipse at 50% 44%, #ff9 50%, transparent 50%), /*Main*/
+
+    radial-gradient(ellipse at 58% 60%, #ff8 50%, transparent 50%), /* center bottom top */ 
+    radial-gradient(ellipse at 58% 57%, #ccb100 50%, transparent 50%), /* center bottom shadow */ 
+    radial-gradient(ellipse at 58% 60%, #ff8 50%, transparent 50%), /* center bottom */ 
+
+    radial-gradient(ellipse at 58% 60%, #ff8 50%, transparent 50%), /* right bottom top */ 
+    radial-gradient(ellipse at 58% 57%, #ccb100 50%, transparent 50%), /* right bottom shadow */ 
+    radial-gradient(ellipse at 58% 50%, #ff8 50%, transparent 50%), /* right bottom */ 
+
+	radial-gradient(ellipse at 58% 60%, #ff9 50%, transparent 50%), /* left bottom top */ 
+    radial-gradient(ellipse at 58% 57%, #ccb100 50%, transparent 50%), /* left bottom shadow */ 
+    radial-gradient(ellipse at 60% 50%, #ff9 50%, transparent 50%);
+	background-size: 
+		80% 90%, 80% 80%, 100% 100%,
+    	38% 31%, 30% 31%, 50% 50%, 
+    	38% 31%, 30% 31%, 50% 50%, 
+    	38% 36%, 30% 31%, 50% 50%;
+	background-position: 
+		50% 50%, 70% 50%, 0 0,
+		53% 89%, 52% 95%, 50% 100%, 
+		12% 77%, 12% 83%, 0 100%,        
+		77% 82%, 83% 84%, 82% 100%;
+}
+.popcorn-2 {
+	position: absolute;
+	top: 15%;
+	left: 1%;
+	transform: translate(-50%, -50%);
+	width: 100px;
+	height: 100px;
+    background-repeat: no-repeat;
+	background-image: radial-gradient();
+}
 
 /* Theme Buttons */
 .themes {
@@ -239,6 +337,8 @@ img {
 .theme:hover{
 	filter: grayscale(0%);
 	border: 2px solid #009cff;
+	transform: scale(1.1);
+	box-shadow: 5px 5px 20px rgba(0,0,0,0.8);
 }
 
 .theme-1 {background-image: url(https://media3.giphy.com/media/qTO3G17bstuo0/100_s.gif);}
@@ -253,10 +353,10 @@ img {
 .theme-4 {background-image: url(https://media3.giphy.com/media/XQ1FwjRKun4nS/100_s.gif);}
 .theme-4:hover {background-image: url(https://media3.giphy.com/media/XQ1FwjRKun4nS/100.gif);}
 
-.theme-1:hover::after,
-.theme-2:hover::after,
-.theme-3:hover::after,
-.theme-4:hover::after {
+.theme-1:hover::before,
+.theme-2:hover::before,
+.theme-3:hover::before,
+.theme-4:hover::before {
 	content: attr(data-theme);
 	position: absolute;
 	top: -1em;
@@ -272,10 +372,7 @@ img {
 	z-index: -1;
 }
 
-.the90s .theme-1,
-.video-games .theme-2,
-.movies .theme-3,
-.music .theme-4 {
+.active {
 	border: 2px solid #009cff;
 	filter: grayscale(0%);
 }

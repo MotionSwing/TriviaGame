@@ -204,7 +204,7 @@ const themes = [
 						{option: "Ex Machina", answer: false},
 						{option: "La La Land", answer: false}
 					],
-					image: "https://media.giphy.com/media/xUPGcH3loGLLA39ikU/source.gif"
+					image: "https://media.giphy.com/media/xUPGcH3loGLLA39ikU/200.gif"
 				},
 				{
 					text: 'Gal Gadot plays Wonder Woman in the 2017 film, but where was she born?',
@@ -214,7 +214,7 @@ const themes = [
 						{option: "Israel", answer: true},
 						{option: "Italy", answer: false}
 					],
-					image: "assets/images/ac-origins.gif"
+					image: "https://media.giphy.com/media/e1BxgoFxAOmbK/200.gif"
 				},
 				{
 					text: "Which actor appeared in American Graffiti before starring in Star Wars?",
@@ -234,7 +234,7 @@ const themes = [
 						{option: "Harrison Ford", answer: false},
 						{option: "Ron Howard", answer: false}
 					],
-					image: "assets/images/lara-croft.gif"
+					image: "https://media.giphy.com/media/AITIlwMelvctO/200.gif"
 				},
 				{
 					text: "Who played the role of Lucius Fox in the 2008 film The Dark Knight?",
@@ -244,7 +244,7 @@ const themes = [
 						{option: "Idris Elba", answer: false},
 						{option: "Lawrence Fishburne", answer: false}
 					],
-					image: "assets/images/halo.gif"
+					image: "https://media.giphy.com/media/TI2isBKDdySu4/200.gif"
 				},
 				{
 					text: "For which comedy did Tom Hanks receive his first Oscar nomination?",
@@ -254,7 +254,7 @@ const themes = [
 						{option: "Splash", answer: false},
 						{option: "Big", answer: true}
 					],
-					image: "assets/images/black-ops.gif"
+					image: "https://media.giphy.com/media/7FgcOayLFeMuY/200.gif"
 				}
 			]
 		},
@@ -270,7 +270,7 @@ const themes = [
 						{option: "88", answer: true},
 						{option: "50", answer: false}
 					],
-					image: "assets/images/zelda.gif"
+					image: "assets/images/piano.gif"
 				},
 				{
 					text: "Which one of Prince's songs reached highest on the music charts?",
@@ -280,7 +280,7 @@ const themes = [
 						{option: "Let's Go Crazy", answer: false},
 						{option: "Cream", answer: false}
 					],
-					image: "assets/images/doom.gif"
+					image: "assets/images/when-doves-cry.jpg"
 				},
 				{
 					text: 'Who was the lead singer of the band "Queen"?',
@@ -290,7 +290,7 @@ const themes = [
 						{option: "Ozzy Osborne", answer: false},
 						{option: "Freddie Mercury", answer: true}
 					],
-					image: "assets/images/nintendo.webp"
+					image: "assets/images/freddie.gif"
 				},
 				{
 					text: 'Which band released the song, "Hey There Delilah"?',
@@ -300,7 +300,7 @@ const themes = [
 						{option: "Plain White T's ", answer: true},
 						{option: "The Yeah Yeah Yeahs", answer: false}
 					],
-					image: "assets/images/ac-origins.gif"
+					image: "assets/images/WhiteTsTF.jpg"
 				},
 				{
 					text: "What musician won the Nobel Prize for Literature in 2016?",
@@ -310,7 +310,7 @@ const themes = [
 						{option: "Keith Richards", answer: false},
 						{option: "Mick Jagger", answer: false}
 					],
-					image: "assets/images/frogger.gif"
+					image: "assets/images/bob-dylan.jpg"
 				},
 				{
 					text: 'Which famous American musician was fatally shot by his father on April 1, 1984?',
@@ -320,7 +320,7 @@ const themes = [
 						{option: "Bob Marley", answer: false},
 						{option: "Jimmy Hendrix", answer: false}
 					],
-					image: "assets/images/lara-croft.gif"
+					image: "https://media1.tenor.com/images/249bc6a87bf80d5ec5b59d91859cc993/tenor.gif"
 				},
 				{
 					text: 'Rapper Vanilla Ice had a hit song titled "Ice Ice Baby", from which other song did "Ice Ice Baby" sample from?',
@@ -330,7 +330,7 @@ const themes = [
 						{option: '"Under Pressure" by Queen and David Bowie', answer: true},
 						{option: '"Big Bang Baby" by Stone Temple Pilots', answer: false}
 					],
-					image: "assets/images/halo.gif"
+					image: "assets/images/queen-david-bowie.jpg"
 				},
 				{
 					text: "What was the highest selling album of the 1980's?",
@@ -340,7 +340,7 @@ const themes = [
 						{option: "Purple Rain - Prince", answer: false},
 						{option: "Thriller - Michael Jackson", answer: true}
 					],
-					image: "assets/images/black-ops.gif"
+					image: "assets/images/thriller.gif"
 				}
 			]
 		}
