@@ -73,6 +73,7 @@ $(document).ready(function(){
 		questionIndex: 0,
 		timeout_Celebration: 0,
 		timeout_EndRound: 0,
+		coins: 0,
 		start_game: function() {
 			// initialize variables
 			game.correctGuesses = 0;
@@ -82,7 +83,9 @@ $(document).ready(function(){
 			game.usedQuestions = [];
 			game.availQuestions = [0,1,2,3,4,5,6,7];
 			game.questionIndex = game.getNextQuestionIndex();
+			game.coins = 0;
 			$(".results, .trivia, #restart, #done").addClass('hide');
+			$('.purse').text('Coins Collected: ' + game.coins);
 
 			// Display a question
 			game.displayQuestion(game.questionIndex);
@@ -97,7 +100,8 @@ $(document).ready(function(){
 			$(".trivia").html('<p>Time Remaining: <span class="countdown">30 Seconds</span></p>');
 			$(".trivia").append($("<p>").text(themes[game.selectedTheme].questions[index].text));
 			for (var i = 0; i < themes[game.selectedTheme].questions[index].responses.length; i++) {
-				const btn_option = $("<button>").addClass('btn-option').text(themes[game.selectedTheme].questions[index].responses[i].option);
+				const btn_option = $("<button>").addClass('btn-option')
+					.text(themes[game.selectedTheme].questions[index].responses[i].option);
 				btn_option.data('value', themes[game.selectedTheme].questions[index].responses[i].answer);
 				$(".trivia").append(btn_option);
 			}
@@ -164,7 +168,8 @@ $(document).ready(function(){
 				$(".trivia").append(status_text);
 				answerImg = $("<img>").attr('src', themes[game.selectedTheme].questions[index].image);
 			}else {
-				const answer = $("<p>").html("<p>The Correct Answer was: <span class='correct-answer'>"+ game.getAnswerText(index) +"</span></p>");
+				const answer = $("<p>").html("<p>The Correct Answer was: <span class='correct-answer'>"+ 
+					game.getAnswerText(index) + "</span></p>");
 				$(".trivia").append(status_text, answer);
 				if($('body').hasClass('movies')) {
 					answerImg = $("<img>").attr('src', shia.sad[Math.floor(Math.random() * shia.sad.length)]);
@@ -192,15 +197,35 @@ $(document).ready(function(){
 				let flourish;
 				switch (theme) {
 					case "The90s":
-						flourish = $("<div>").addClass('flourish star ' + size[Math.floor(Math.random() * size.length)]);
+						flourish = $("<div>").addClass('flourish star ' + 
+							size[Math.floor(Math.random() * size.length)]);
 						flourish.css('background-color',
 							'rgb('+ Math.floor(Math.random() * 255) +','+ 
 							Math.floor(Math.random() * 255) +','+ 
 							Math.floor(Math.random() * 255) +')'
 							);
 						break;
+					case "Video Games":
+						const coinSound = new Audio('assets/audio/Mario-coin-sound.mp3');
+						coinSound.volume = 0.05;
+						flourish = $("<div>");
+						flourish.addClass('flourish coin ' + 
+							' spin-dir-' + Math.floor(Math.random() * 2) + 
+							' spin-speed-' + Math.floor(Math.random() * 7));
+						flourish.css('left', (Math.floor(Math.random() * 100) + 1) + '%');
+						flourish.on('click', function(event) {
+							coinSound.play();
+							game.coins++;
+							$('.purse').text('Coins Collected: ' + game.coins);
+							$(this).remove();
+						});
+						flourish.animate({top: "150%"}, Math.floor(Math.random() * (5000 - 2000)) + 2000, function(){
+							$(this).remove();
+						});
+						break;
 					case "Movies":
-						flourish = $("<div>").addClass('flourish popcorn popcorn-1 ' + size[Math.floor(Math.random() * size.length)]);
+						flourish = $("<div>").addClass('flourish popcorn popcorn-1 ' + 
+							size[Math.floor(Math.random() * size.length)]);
 						break;
 					case "Music":
 						const musicalNotes = ["&#9833;","&#9834;","&#9835;","&#9836;","&#9837;","&#9839;"];
@@ -214,7 +239,8 @@ $(document).ready(function(){
 							);
 						break;
 					default:
-						flourish = $("<div>").addClass('flourish star ' + size[Math.floor(Math.random() * size.length)]);
+						flourish = $("<div>").addClass('flourish star ' + 
+							size[Math.floor(Math.random() * size.length)]);
 						flourish.css('background-color',
 							'rgb('+ Math.floor(Math.random() * 255) +','+ 
 							Math.floor(Math.random() * 255) +','+ 

@@ -1,14 +1,9 @@
 /*----------------------*/
 /*--- General Styles ---*/
 /*----------------------*/
-@font-face {
-	font-family: "Forced Square";
-	src: url(../fonts/forced-square.ttf);
-}
+@font-face {font-family: "Forced Square"; src: url(../fonts/forced-square.ttf);}
 
-* {
-	box-sizing: border-box;
-}
+* {box-sizing: border-box;}
 
 body {
 	background-color: pink;
@@ -27,15 +22,8 @@ footer {
 	border-radius: 5px;
 	border: 1px solid #000;
 }
-footer:hover {
-	transform: scale(1.1);
-	box-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-}
-
-footer a {
-	text-decoration: none;
-	color: #000;
-}
+footer:hover {transform: scale(1.1); box-shadow: 2px 2px 10px rgba(0,0,0,0.8);}
+footer a {text-decoration: none; color: #000;}
 
 .container {
 	position: relative;
@@ -55,24 +43,11 @@ h1 {
 	font-size: 70px;
 	text-align: center;
 }
+h2 {margin: 30px; font-size: 30px;}
 
-h2 {
-	margin: 30px;
-	font-size: 30px;
-}
-
-.trivia p {
-	margin: 20px 0 0;
-	font-size: 20px;
-}
-
-.results p {
-	margin: 10px 0;
-}
-
-.question {
-	padding: 15px 0;
-}
+.trivia p {margin: 20px 0 0; font-size: 20px;}
+.results p {margin: 10px 0;}
+.question {	padding: 15px 0;}
 
 .btn {
 	border: 2px solid #3c0099;	
@@ -120,13 +95,9 @@ h2 {
 	border-radius: 10px / 50%;
 }
 
-img {
-	width: 300px;
-}
+img {width: 300px;}
 
-.hide {
-	display: none;
-}
+.hide {display: none;}
 
 .correct-answer {
 	color: #f00;
@@ -149,15 +120,14 @@ img {
 	background: url(../images/video-game-backgrounds.png);
 	background-size: cover;
 	color: #fff;
+	user-select: none;
 }
 .video-games .container {
 	background-color: rgba(0, 51, 204, .6);
 	box-shadow: 0 0 15px 3px rgba(255,255,255,0.9);
 }
 
-.video-games h1 {
-	color: #000;
-}
+.video-games h1 {color: #000;}
 
 .video-games .btn,
 .video-games .btn-option:hover {
@@ -175,19 +145,13 @@ img {
 /*--------------*/
 /*--- Movies ---*/
 /*--------------*/
-.movies {
-	background-image: url(../images/captain-america-vs-black-panther.jpg);
-	background-size: cover;
-}
+.movies {background-image: url(../images/captain-america-vs-black-panther.jpg); background-size: cover;}
 .movies .container {background-color: rgba(255, 255, 204, .3);}
 
 /*-------------*/
 /*--- Music ---*/
 /*-------------*/
-.music {
-	background-image: url(../images/music-2.jpg);
-	background-size: cover;
-}
+.music {background-image: url(../images/music-2.jpg); background-size: cover;}
 .music .container {background-color: rgba(255, 255, 204, .3);}
 
 .music .btn,
@@ -223,6 +187,75 @@ img {
 .star.sm {width: 50px;height: 50px;}
 .star.md {width: 75px;height: 75px;}
 .star.lg {width: 100px;height: 100px;}
+
+/* Video Games */
+.coin {
+	position: absolute;
+	top: 15%;
+	left: 8%;
+	width: 100px;
+	height: 100px;
+	background-color: #ff5;
+	background-image: linear-gradient(135deg, #fff 0%,#ff5 40%,#ccb100 100%);
+	border-radius: 50%;
+	border: 10px solid #ff5;
+	box-shadow: 0 0 10px rgba(0,0,0,.6), inset 0 0 10px rgba(0,0,0,0.5);
+	animation: spin 5s linear infinite;
+}
+
+.coin::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 20%;
+	height: 70%;
+	box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
+	border-radius: 2px;
+	border: 2px solid rgba(0,0,0,0.3);
+	border-image-source: linear-gradient(-80deg, #fff, rgba(0,0,0,0.3));
+    border-image-slice: 1;
+}
+
+@keyframes spin {
+	0% {transform: rotate(-360deg);}
+	100% {transform: rotate(0deg);}
+}
+
+.spin-dir-0 {animation-name: spin_clockwise;}
+.spin-dir-1 {animation-name: spin_counter;}
+
+.spin-speed-0 {animation-duration: 2000ms;}
+.spin-speed-1 {animation-duration: 2500ms;}
+.spin-speed-2 {animation-duration: 3000ms;}
+.spin-speed-3 {animation-duration: 3500ms;}
+.spin-speed-4 {animation-duration: 4000ms;}
+.spin-speed-5 {animation-duration: 4500ms;}
+.spin-speed-6 {animation-duration: 5000ms;}
+
+@keyframes spin_clockwise {
+	0% {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}
+}
+
+@keyframes spin_counter {
+	0% {transform: rotate(360deg);}
+	100% {transform: rotate(0deg);}
+}
+
+.purse {
+	display: none;
+}
+
+.video-games .purse {
+	display: block;
+	position: fixed;
+	top: 10px;
+	left: 10px;
+/*	color: #fff;*/
+}
+
 
 /*Music Flourish*/
 .musical-note {
@@ -358,10 +391,7 @@ img {
 	z-index: -1;
 }
 
-.active {
-	border: 2px solid #009cff;
-	filter: grayscale(0%);
-}
+.active {border: 2px solid #009cff; filter: grayscale(0%);}
 
 @keyframes reveal {
 	0% {top: 1em; opacity: 0;}

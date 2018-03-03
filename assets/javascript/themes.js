@@ -204,7 +204,7 @@ const themes = [
 						{option: "Ex Machina", answer: false},
 						{option: "La La Land", answer: false}
 					],
-					image: "https://media.giphy.com/media/xUPGcH3loGLLA39ikU/200.gif"
+					image: "assets/images/blade-runner.gif"
 				},
 				{
 					text: 'Gal Gadot plays Wonder Woman in the 2017 film, but where was she born?',
@@ -214,7 +214,7 @@ const themes = [
 						{option: "Israel", answer: true},
 						{option: "Italy", answer: false}
 					],
-					image: "https://media.giphy.com/media/e1BxgoFxAOmbK/200.gif"
+					image: "assets/images/gadot.gif"
 				},
 				{
 					text: "Which actor appeared in American Graffiti before starring in Star Wars?",
@@ -254,7 +254,7 @@ const themes = [
 						{option: "Splash", answer: false},
 						{option: "Big", answer: true}
 					],
-					image: "https://media.giphy.com/media/7FgcOayLFeMuY/200.gif"
+					image: "assets/images/big.gif"
 				}
 			]
 		},
@@ -320,7 +320,7 @@ const themes = [
 						{option: "Bob Marley", answer: false},
 						{option: "Jimmy Hendrix", answer: false}
 					],
-					image: "https://media1.tenor.com/images/249bc6a87bf80d5ec5b59d91859cc993/tenor.gif"
+					image: "assets/images/marvin.gif"
 				},
 				{
 					text: 'Rapper Vanilla Ice had a hit song titled "Ice Ice Baby", from which other song did "Ice Ice Baby" sample from?',

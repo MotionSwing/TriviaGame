@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Simple Trivia game. There are 8 questions and you have 30 seconds to answer each question. You can also choose between 4 different trivia themes.
+Simple Trivia game. There are 8 questions and you have 30 seconds to answer each question. The questions will load randomly so each game play experience will be slightly different.
 
 Play the game now by clicking here: (Trivia Game) https://motionswing.github.io/TriviaGame/
 
