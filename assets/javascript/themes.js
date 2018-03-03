@@ -234,7 +234,7 @@ const themes = [
 						{option: "Harrison Ford", answer: false},
 						{option: "Ron Howard", answer: false}
 					],
-					image: "https://media.giphy.com/media/AITIlwMelvctO/200.gif"
+					image: "assets/images/jjabrams.jpg"
 				},
 				{
 					text: "Who played the role of Lucius Fox in the 2008 film The Dark Knight?",
@@ -244,7 +244,7 @@ const themes = [
 						{option: "Idris Elba", answer: false},
 						{option: "Lawrence Fishburne", answer: false}
 					],
-					image: "https://media.giphy.com/media/TI2isBKDdySu4/200.gif"
+					image: "assets/images/morgan.jpg"
 				},
 				{
 					text: "For which comedy did Tom Hanks receive his first Oscar nomination?",

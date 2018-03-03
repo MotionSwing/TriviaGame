@@ -1,3 +1,6 @@
+/*----------------------*/
+/*--- General Styles ---*/
+/*----------------------*/
 @font-face {
 	font-family: "Forced Square";
 	src: url(../fonts/forced-square.ttf);
@@ -34,9 +37,6 @@ footer a {
 	color: #000;
 }
 
-/*----------------------*/
-/*--- General Styles ---*/
-/*----------------------*/
 .container {
 	position: relative;
 	background-color: #ffff4e;
@@ -66,10 +66,6 @@ h2 {
 	font-size: 20px;
 }
 
-.trivia p:last-of-type {
-	/*margin-bottom: 20px;*/
-}
-
 .results p {
 	margin: 10px 0;
 }
@@ -84,11 +80,6 @@ h2 {
 	padding: 10px 100px;
 	font-size: 30px;
 	cursor: pointer;	
-}
-
-.answer-img {
-	/*height: 160px;*/
-	/*overflow: visible;*/
 }
 
 .answer-img img {
@@ -110,10 +101,6 @@ h2 {
 	margin: 30px auto;
 	padding: 5px;
 }
-
-/*---------------------*/
-/*--- Advanced Game ---*/
-/*---------------------*/
 
 .btn-no-bg,
 .btn-option {
@@ -208,14 +195,14 @@ img {
 	background-color: rgba(0,0,255,0.6);
 }
 
-/* Celebrations */
+/* Flourishes */
 @keyframes symbol_flash {
 	0% {opacity: 0;	transform: scale(0);}
 	35% {opacity: 1;transform: scale(1.2);}
 	100% {opacity: 1;transform: scale(0);}
 }
 
-/*The 90s Celebration Symbol*/
+/*The 90s Flourish*/
 .star {
 	position: absolute;
 	top: 10px;
@@ -237,7 +224,7 @@ img {
 .star.md {width: 75px;height: 75px;}
 .star.lg {width: 100px;height: 100px;}
 
-/*Music Celebration Symbol*/
+/*Music Flourish*/
 .musical-note {
 	position: absolute;
 	font-size: 2em;
@@ -248,6 +235,7 @@ img {
 .musical-note.md {font-size: 5em;}
 .musical-note.lg {font-size: 8em;}
 
+/*Movies Flourish*/
 .popcorn {
 	position: absolute;
 	animation: symbol_flash 1s forwards;
@@ -257,12 +245,10 @@ img {
 .popcorn.md {width: 100px;height: 100px;}
 .popcorn.lg {width: 125px;height: 125px;}
 
-
 .popcorn-1 {
 	position: absolute;
 	top: 15%;
 	left: 1%;
-	/*transform: translate(-50%, -50%);*/
 	width: 100px;
 	height: 100px;
     background-repeat: no-repeat;
