@@ -4,7 +4,7 @@
 
 Simple Trivia game. There are 8 questions and you have 30 seconds to answer each question. The questions will load randomly so each game play experience will be slightly different.
 
-Play the game now by clicking here: (Trivia Game) https://motionswing.github.io/TriviaGame/
+Play the game now by clicking here: (Trivia Game) https://jonathan-white.github.io/TriviaGame/
 
 ### Themes
 
@@ -18,4 +18,4 @@ This trivia game contains four trivia themes which can be switched between at an
 ## Author
 
 This project was written by 
-(Jon White) https://motionswing.github.io/
+(Jon White) https://jonathan-white.github.io/
