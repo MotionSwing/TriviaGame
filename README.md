@@ -17,5 +17,5 @@ This trivia game contains four trivia themes which can be switched between at an
 
 ## Author
 
-This project was written by 
-(Jon White) https://jonathan-white.github.io/
+This project was written by
+(Jon White) https://jwhite.co/
